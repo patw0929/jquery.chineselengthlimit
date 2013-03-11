@@ -3,26 +3,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>jQuery Chinese Characters Length Limit Plugin</title>
-	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="jquery.chineselengthlimit.1.0.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#txt').ChineseLengthLimit(
-					{
-						limitCount:13,
-						isbyte:true,
-						callback:function(data){
-							$("#msg").html("目前輸入:" + data.input + "/" + data.max + " 還剩:" + data.left + "字元");
-						}
-					});
-			
-			$("#textarea1").ChineseLengthLimit({
-				callback:function(data){
-					$("#msg2").html("目前輸入:" + data.input + "/" + data.max + " 還剩:" + data.left + "字元");
-				}
-			});
-		});
-	</script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -93,7 +73,8 @@
 			<td><b>isByte</b></td>
 			<td>
 			是否採用位元限制。預設值為 <b>true</b>。<br />
-			若採用，則會以中文字以 2 字元、英文字以 1 字元的方式計算。</td>
+			若採用，則會以中文字以 2 字元、英文字以 1 字元的方式計算。<br />
+			換行字元 (\n) 則一律計算為 2 字元。</td>
 		</tr>
 		<tr>
 			<td><b>callback</b></td>
@@ -121,22 +102,44 @@
 <h2>Usage:</h2>
 
 <b>Basic:</b>
-<pre>$(document).ready(<span style=' color: Blue;'>function</span> () { 
+<pre>$(<span style=' color: Blue;'>function</span> () { 
     $(<span style=' color: Maroon;'>'目標對象'</span>).ChineseLengthLimit(); 
 });</pre>
 
 <b>Advanced:</b>
-<pre>$(document).ready(<span style=' color: Blue;'>function</span> () { 
+<pre>$(<span style=' color: Blue;'>function</span> () { 
     $(<span style=' color: Maroon;'>'目標對象'</span>).ChineseLengthLimit({ 
         limitCount: <span style=' color: Maroon;'>11</span>, 
         isByte: <span style=' color: Maroon;'>true</span>, 
         callback: <span style=' color: Blue;'>function</span> (data) { 
-            $(<span style=' color: Maroon;'>"#msg"</span>).html(<span style=' color: Maroon;'>"目前輸入:"</span> + data.input + <span style=' color: Maroon;'>"/"</span> + data.max + <span style=' color: Maroon;'>" 還剩:"</span> + data.left + <span style=' color: Maroon;'>"字元"</span>); 
+            $(<span style=' color: Maroon;'>'顯示 callback 訊息的容器元素'</span>).html(<span style=' color: Maroon;'>"目前輸入:"</span> + data.input + <span style=' color: Maroon;'>"/"</span> + data.max + <span style=' color: Maroon;'>" 還剩:"</span> + data.left + <span style=' color: Maroon;'>"字元"</span>); 
         } 
     }); 
 });</pre>
 
 </form>
+
+	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="jquery.chineselengthlimit.1.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#txt').ChineseLengthLimit(
+			{
+				limitCount:13,
+				isByte:true,
+				callback:function(data){
+					$("#msg").html("目前輸入:" + data.input + "/" + data.max + " 還剩:" + data.left + "字元");
+				}
+			}).focus();
+			
+			$("#textarea1").ChineseLengthLimit({
+				isByte:false,
+				callback:function(data){
+					$("#msg2").html("目前輸入:" + data.input + "/" + data.max + " 還剩:" + data.left + "字元");
+				}
+			});
+		});
+	</script>
 
 </body>
 </html>
