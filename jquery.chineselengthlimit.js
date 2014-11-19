@@ -1,5 +1,5 @@
 /*
- * jQuery Chinese Characters Length Limit Plugin 1.2
+ * jQuery Chinese Characters Length Limit Plugin 1.2.1
  * http://code.google.com/p/jquery-chinese-characters-length-limit-plugin/
  *
  * Copyright (C) 2012 - 2014 Patrick Wang <patw.hi@gmail.com>
