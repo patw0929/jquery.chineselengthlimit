@@ -120,12 +120,7 @@
             } else {
 
                 $elements.attr('maxlength', opts.limitCount);
-                $elements.bind('keyup', function () {
-                    setTimeout(function () {
-                        checkLimit();
-                    }, 15);
-                });
-                $elements.bind('paste', function () {
+                $elements.bind('keyup paste', function () {
                     setTimeout(function () {
                         checkLimit();
                     }, 15);
