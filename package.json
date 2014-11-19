@@ -1,0 +1,27 @@
+{
+  "name": "jquery.chineselengthlimit",
+  "version": "1.2.1",
+  "description": "jQuery Chinese Characters Length Limit Plugin ====",
+  "main": "jquery.chineselengthlimit.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/patw0929/jquery.chineselengthlimit.git"
+  },
+  "keywords": [
+    "Chinese",
+    "Length",
+    "Checker"
+  ],
+  "dependencies": {
+    "jquery": "~1.8.3"
+  },
+  "author": "patw (patw.hi@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patw0929/jquery.chineselengthlimit/issues"
+  },
+  "homepage": "https://github.com/patw0929/jquery.chineselengthlimit"
+}
