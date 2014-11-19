@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <title>jQuery Chinese Characters Length Limit Plugin</title>
   <style type="text/css">
+    body {
+      padding: 10px 50px;
+    }
+
     table {
       font-size: 12px;
       font-family: Arial, Helvetica, verdana sans-serif;
@@ -36,6 +40,25 @@
       line-height: 22px;
       vertical-align: top;
     }
+
+    hr {
+      background-color: #ccc;
+      border: 0;
+    }
+
+    hr.s {
+      height: 1px;
+    }
+
+    hr.l {
+      margin: 50px auto;
+      border: 0;
+      height: 1px;
+      background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+      background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+      background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+      background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+    }
   </style>
 </head>
 <body>
@@ -46,11 +69,14 @@
 
   <p><b>input</b>:</p>
   <input type="text" name="txt" id="txt" maxlength="4" />
+  <button type="button" class="btn-change">變更文字</button>
   <span id="msg"></span>
 
   <p><b>textarea</b>:</p>
   <textarea id="textarea1" maxlength="123"></textarea>
   <span id="msg2"></span>
+
+  <hr class="l">
 
   <h2>Options:</h2>
   <p>下面是可以調整的選項：</p>
@@ -99,23 +125,59 @@
     </tbody>
   </table>
 
+  <p>可以觸發的事件:</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 120px;">Event</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>checkLimit</td>
+        <td>觸發檢查事件。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="l">
+
   <h2>Usage:</h2>
 
   <b>Basic:</b>
   <pre>$(<span style=' color: Blue;'>function</span> () {
-      $(<span style=' color: Maroon;'>'目標對象'</span>).ChineseLengthLimit();
-  });</pre>
+  $(<span style=' color: Maroon;'>'目標對象'</span>).ChineseLengthLimit();
+});</pre>
+
+  <hr class="s" />
 
   <b>Advanced:</b>
   <pre>$(<span style=' color: Blue;'>function</span> () {
-      $(<span style=' color: Maroon;'>'目標對象'</span>).ChineseLengthLimit({
-          limitCount: <span style=' color: Maroon;'>11</span>,
-          isByte: <span style=' color: Maroon;'>true</span>,
-          callback: <span style=' color: Blue;'>function</span> (data) {
-              $(<span style=' color: Maroon;'>'顯示 callback 訊息的容器元素'</span>).html(<span style=' color: Maroon;'>"目前輸入:"</span> + data.input + <span style=' color: Maroon;'>"/"</span> + data.max + <span style=' color: Maroon;'>" 還剩:"</span> + data.left + <span style=' color: Maroon;'>"字元"</span>);
-          }
-      });
-  });</pre>
+  $(<span style=' color: Maroon;'>'目標對象'</span>).ChineseLengthLimit({
+    limitCount: <span style=' color: Maroon;'>11</span>,
+    isByte: <span style=' color: Maroon;'>true</span>,
+    callback: <span style=' color: Blue;'>function</span> (data) {
+        $(<span style=' color: Maroon;'>'顯示 callback 訊息的容器元素'</span>).html(<span style=' color: Maroon;'>"目前輸入:"</span> + data.input + <span style=' color: Maroon;'>"/"</span> + data.max + <span style=' color: Maroon;'>" 還剩:"</span> + data.left + <span style=' color: Maroon;'>"字元"</span>);
+    }
+  });
+
+  $(<span style=' color: Maroon;'>'目標對象'</span>).trigger('<span style=' color: Maroon;'>checkLimit</span>');
+});</pre>
+
+  <hr class="l">
+
+  <h2>License:</h2>
+
+  <p>MIT License</p>
+
+  <hr class="l">
+
+  <h2>Author:</h2>
+
+  <p>patw (patw at gmail.com, <a href="http://patw.idv.tw">http://patw.idv.tw</a>)</p>
+
+  <hr class="l">
 
   </form>
 
@@ -136,6 +198,12 @@
         callback: function (data) {
           $("#msg2").html("目前輸入:" + data.input + "/" + data.max + " 還剩:" + data.left + "字元");
         }
+      });
+
+      $(".btn-change").on("click", function (e) {
+        e.preventDefault();
+
+        $("#txt").val("Changed.").trigger("checkLimit");
       });
     });
   </script>
