@@ -39,4 +39,6 @@ Usage
      	       $('顯示 callback 訊息元素').html("目前輸入:" + data.input + "/" + data.max + " 還剩:" + data.left + "字元"); 
   	      } 
  	   }); 
+
+     $('目標對象').trigger('checkLimit');
 	});
